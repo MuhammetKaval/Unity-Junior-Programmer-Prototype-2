@@ -1,11 +1,11 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroyOutOffBounds : MonoBehaviour
+public class DestroyOutOfBounds : MonoBehaviour
 {
-    public float topBound = 30.0f;
-    public float lowerBound = -10.0f;
+    private float topBound = 30;
+    private float lowerBound = -10;
 
     // Start is called before the first frame update
     void Start()
@@ -16,15 +16,20 @@ public class DestroyOutOffBounds : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // If an animal goes past the player view in the game, remove that object
         if (transform.position.z > topBound)
         {
-            Destroy(gameObject);
+            // Instead of destroying the projectile when it leaves the screen
+            //Destroy(gameObject);
+
+            // Just deactivate it
+            gameObject.SetActive(false);
+
         }
         else if (transform.position.z < lowerBound)
         {
-            Debug.Log("Game Over");
+            Debug.Log("Game Over!");
             Destroy(gameObject);
         }
+
     }
 }
